@@ -30,10 +30,20 @@ function onSubmit(e) {
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(`${user.name} : ${user.email}`));
 
+        const deletBtn = document.createElement('li');
+        deletBtn.classList.add('delete-btn');
+        deletBtn.appendChild(document.createTextNode('Delete'));
+        li.appendChild(deletBtn);
+
         userList.appendChild(li);
 
         nameInput.value = '';
         emailInput.value = '';
+
+        deletBtn.addEventListener('click', ()=>{
+            localStorage.removeItem(userId);
+            li.remove();
+        })
     }
 }
 

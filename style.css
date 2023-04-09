@@ -75,3 +75,18 @@
     padding: 5px;
     margin: 5px;
   }
+
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
