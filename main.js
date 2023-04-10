@@ -27,49 +27,49 @@ function onSubmit(e) {
         // Store the user data in local storage using the unique ID as the key
         localStorage.setItem(userId, JSON.stringify(user));
 
+        // Created list item element
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(`${user.name} : ${user.email}`));
 
+        // Created delete button element
         const deletBtn = document.createElement('li');
         deletBtn.classList.add('delete-btn');
         deletBtn.appendChild(document.createTextNode('Delete'));
         li.appendChild(deletBtn);
 
+        // Created edit button element
+        const editBtn = document.createElement('li');
+        editBtn.classList.add('edit-btn');
+        editBtn.appendChild(document.createTextNode('Edit'));
+        li.appendChild(editBtn);
+
+        // Add list item to the user list
         userList.appendChild(li);
 
+        // Clear input fields
         nameInput.value = '';
         emailInput.value = '';
 
+
+        // Add event listner to the delete button
         deletBtn.addEventListener('click', ()=>{
             localStorage.removeItem(userId);
             li.remove();
         })
-    }
-}
 
-window.onload = function(){
-    localStorage.removeItem('users');
-    //checking for local storage support.
-    if(localStorage){
-
-        //Add an event listener for form submission
-        document.getElementById('my-form').addEventListener('submit', function(){
-
-            //get the value of the name field
-            let name = document.getElementById('name').value;
-            let email = document.getElementById('email').value;
-
-            //Save the name and email in local storage
-            const user = {
-                name: name,
-                email: email
-            };
+        // Add event listner to the edit button
+        editBtn.addEventListener('click', ()=>{
+            // Retrieve user data from local storage
+            const userData = JSON.parse(localStorage.getItem(userId));
             
-            // Generate a unique ID for the user
-            const userId = email.toLowerCase();
+            // Remove the list item from the user list
+            li.remove();
 
-            // Storing the data in the UI
-            const li = document.createElement('li');
+            //
+            nameInput.value = userData.name;
+            emailInput.value = userData.email;
+
+            localStorage.removeItem(userId);
         })
     }
 }
